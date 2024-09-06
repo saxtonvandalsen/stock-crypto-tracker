@@ -1,4 +1,4 @@
-// Handling user input of stock ticker and dispatching an action to fetch stock data
+// Handling user input of stock ticker and dispatching an action to fetch stock data from API
 
 import React, {useState } from 'react'; // Hook to manage local component state
 import { useDispatch } from 'react-redux'; // To dispatch actions to the Redux store
