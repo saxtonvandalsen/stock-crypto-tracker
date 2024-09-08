@@ -22,4 +22,4 @@ function StockData() {
     );
 }
 
-export default stockData;
+export default StockData;
