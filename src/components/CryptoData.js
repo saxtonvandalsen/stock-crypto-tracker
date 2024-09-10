@@ -16,9 +16,12 @@ function CryptoData() {
     return (
         <div>
             <h2>Crypto Data</h2>
+            <p>Crypto Name: {cryptoData.name}</p>
+            <p>Crypto Symbol: {cryptoData.symbol}</p>
             <p>Price: {cryptoData.price}</p>
             <p>Market Cap: {cryptoData.marketCap}</p>
-            {/* Add more data fields as needed */}
+            <p>Year Low Price: {cryptoData.yearLow}</p>
+            <p>Year High Price: {cryptoData.yearHigh}</p>
         </div>
     );
 }

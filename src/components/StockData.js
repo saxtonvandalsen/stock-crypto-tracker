@@ -15,9 +15,12 @@ function StockData() {
     return (
         <div>
             <h2>Stock Data</h2>
-            <p>Price: {stockData.price}</p>
+            <p>Company Name: {stockData.companyName}</p>
+            <p>Company Ticker: {stockData.symbol}</p>
+            <p>Current price: {stockData.price}</p>
             <p>Market Cap: {stockData.marketCap}</p>
-            
+            <p>Average Volume: {stockData.volAvg}</p>
+            <p>Yearly Range: {stockData.range}</p>
         </div>
     );
 }
