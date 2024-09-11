@@ -5,6 +5,7 @@ import { FETCH_STOCK_DATA, FETCH_CRYPTO_DATA } from "./actions";
 const initialState = {
     stockData: null,
     cryptoData: null,
+    error: null
 };
 
 // Reducer function to manage state updates for stock and crypto data. State
@@ -15,9 +16,17 @@ const reducer = (state = initialState, action) => {
     // immutability
     switch (action.type) {
         case FETCH_STOCK_DATA:
-            return { ...state, stockData: action.payload };
+            if (action.payload) {
+                return { ...state, stockData: action.payload, error: null };
+            } else {
+                return { ...state, stockData: null, error: action.error };
+            }
         case FETCH_CRYPTO_DATA:
-            return { ...state, cryptoData: action.payload };
+            if (action.payload) {
+                return { ...state, cryptoData: action.payload, error: null };
+            } else {
+                return { ...state, cryptoData: action.payload, error: action.error };
+            }       
         default:
             return state;
     }
