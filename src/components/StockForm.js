@@ -10,7 +10,7 @@ function StockForm() {
     // To update state when input changes
     const [ticker, setTicker] = useState('');
 
-    // Accesses dispatch function and used to send actons to Redux store
+    // Accesses dispatch function and sends actons to Redux store
     const dispatch = useDispatch();
 
     // Function runs when user presses submit button on form but prevents
