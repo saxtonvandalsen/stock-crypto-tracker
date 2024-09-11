@@ -11,10 +11,15 @@ export const fetchStockData = (ticker) => async (dispatch) => {
         const response = await fetch(`https://financialmodelingprep.com/api/v3/profile/${ticker}?apikey=${apiKey}`);
         const data = await response.json();
 
+        if (data.length === 0) {
+            throw new Error('Invalid ticker or no data available.');
+        }
+
         // Dispatch action to update Redux state with fetched stock data
         dispatch({ type: FETCH_STOCK_DATA, payload: data });
    } catch (error) {
-    console.error('Error fetching stock data:', error);
+        console.error('Error fetching stock data:', error);
+        dispatch({ type: FETCH_STOCK_DATA, payload: null, error: error.message });
    }
 };
 
@@ -25,9 +30,14 @@ export const fetchCryptoData = (symbol) => async (dispatch) => {
         const response = await fetch(`https://financialmodelingprep.com/api/v3/quote/${symbol}?apikey=${apiKey}`);
         const data = await response.json();
 
+        if (data.length === 0) {
+            throw new Error('Invalid ticker or no data available.');
+        }
+
         // Dispatch action to update Redux state with fetched crypto data
         dispatch({ type: FETCH_CRYPTO_DATA, payload: data });
    } catch (error) {
-    console.error('Error fetching crypto data:', error);
+        console.error('Error fetching crypto data:', error);
+        dispatch({ type: FETCH_CRYPTO_DATA, payload: null, error: error.message });
    }
 };
