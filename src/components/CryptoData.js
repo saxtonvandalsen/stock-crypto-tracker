@@ -10,18 +10,21 @@ function CryptoData() {
     // Retrieve crypto data from Redux state
     const cryptoData = useSelector(state => state.cryptoData);
 
-    if (!cryptoData) return null;
+    if (!cryptoData || cryptoData.length === 0) return null;
+
+    // Accessing array
+    const crypto = cryptoData[0];
 
     // Render the crypto data inside a div
     return (
         <div>
             <h2>Crypto Data</h2>
-            <p>Crypto Name: {cryptoData.name}</p>
-            <p>Crypto Symbol: {cryptoData.symbol}</p>
-            <p>Price: {cryptoData.price}</p>
-            <p>Market Cap: {cryptoData.marketCap}</p>
-            <p>Year Low Price: {cryptoData.yearLow}</p>
-            <p>Year High Price: {cryptoData.yearHigh}</p>
+            <p>Crypto Name: {crypto.name}</p>
+            <p>Crypto Symbol: {crypto.symbol}</p>
+            <p>Price: {crypto.price}</p>
+            <p>Market Cap: {crypto.marketCap}</p>
+            <p>Year Low Price: {crypto.yearLow}</p>
+            <p>Year High Price: {crypto.yearHigh}</p>
         </div>
     );
 }
