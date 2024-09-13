@@ -25,7 +25,7 @@ const reducer = (state = initialState, action) => {
             if (action.payload) {
                 return { ...state, cryptoData: action.payload, error: null };
             } else {
-                return { ...state, cryptoData: action.payload, error: action.error };
+                return { ...state, cryptoData: null, error: action.error };
             }       
         default:
             return state;
