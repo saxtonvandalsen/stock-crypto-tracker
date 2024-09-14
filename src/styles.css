@@ -11,3 +11,62 @@ body {
     padding: 20px;
   }
   
+  /* Container for flexbox layout */
+  .container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px auto;
+    max-width: 1200px;
+  }
+
+/* Section styling for stock and crypto */
+.section {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  flex: 1;
+  margin: 0 10px;
+  border-radius: 8px;
+}
+
+/* Header styles inside each section */
+.section h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* Input and button styling for cleaner UI */
+input {
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Success and error messages */
+.success-message {
+  color: green;
+  margin-top: 10px;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
