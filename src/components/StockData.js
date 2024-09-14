@@ -21,7 +21,7 @@ function StockData() {
             <p>Company Name: {stock.companyName}</p>
             <p>Company Ticker: {stock.symbol}</p>
             <p>Current price: {stock.price}</p>
-            <p>Market Cap: {stock.marketCap}</p>
+            <p>Market Cap: {stock.mktCap}</p>
             <p>Average Volume: {stock.volAvg}</p>
             <p>Yearly Range: {stock.range}</p>
         </div>
