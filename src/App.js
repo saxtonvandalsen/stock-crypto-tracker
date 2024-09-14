@@ -14,9 +14,14 @@ function App() {
     return (
         <Provider store={store}>
             <div className="App">
-                <h1>Stock & Crypto Dashboard</h1>
+                <div className="header-container">
+                    <header className='main-header'>
+                        Stock & Crypto Tracker Dashboard
+                    </header>
+                </div>
+
                 <p></p>
-                <RandomExamples />
+                <h1><RandomExamples /></h1>
                 <p></p>
 
                 <div className='container'>
