@@ -18,13 +18,23 @@ function App() {
                 <p></p>
                 <RandomExamples />
                 <p></p>
-                <StockForm />
-                <p></p>
-                <CryptoForm />
-                <p></p>
-                <StockData />
-                <p></p>
-                <CryptoData />
+
+                <div className='container'>
+                    {/* Stock Section on the Left */}
+                    <div className="section">
+                        <h2>Stock Tracker</h2>
+                        <StockForm />
+                        <StockData />
+                    </div>
+
+                
+                {/* Crypto Section on the Right */}
+                <div className="section">
+                    <h2>Crypto Tracker</h2>
+                    <CryptoForm />
+                    <CryptoData />
+                </div>
+                </div>
             </div>
         </Provider>
     );
