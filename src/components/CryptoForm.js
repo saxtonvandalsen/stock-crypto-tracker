@@ -25,7 +25,7 @@ function CryptoForm() {
             setMessage('Fetching data for crypto coin.');
         } else if (error) {
             setMessageType('error');
-            setMessage('Please enter a valid crypto symbol.');
+            setMessage('Please enter a valid crypto coin symbol.');
         }
     }, [cryptoData, error]);
 
@@ -37,7 +37,7 @@ function CryptoForm() {
         // Check if input is empty or invalid
         if(!symbol.trim()) {
             setMessageType('error');
-            setMessage("Please enter a valid stock ticker.");
+            setMessage("Please enter a valid crypto coin symbol.");
             return;
         }
 
