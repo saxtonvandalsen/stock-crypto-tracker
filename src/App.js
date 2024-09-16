@@ -32,13 +32,12 @@ function App() {
                         <StockData />
                     </div>
 
-                
-                {/* Crypto Section on the Right */}
-                <div className="section">
-                    <h2>Crypto Tracker</h2>
-                    <CryptoForm />
-                    <CryptoData />
-                </div>
+                    {/* Crypto Section on the Right */}
+                    <div className="section">
+                        <h2>Crypto Tracker</h2>
+                        <CryptoForm />
+                        <CryptoData />
+                    </div>
                 </div>
             </div>
         </Provider>
