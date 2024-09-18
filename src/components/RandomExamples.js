@@ -1,5 +1,6 @@
 import React from 'react';
 import symbolsData from '../assets/symbols.json';
+import '../styles.css';
 
 const getRandomExamples = (data, count) => {
     const shuffled = data.sort(() => 0.5 - Math.random());
@@ -11,9 +12,15 @@ const RandomExamples = () => {
     const randomCryptoSymbols = getRandomExamples(symbolsData.cryptoSymbols, 3);
 
     return (
-        <div>
-            <h3>Example Stock Tickers: {randomStockTickers.join(', ')}</h3>
-            <h3>Example Crypto Symbols: {randomCryptoSymbols.join(', ')}</h3>
+        <div className="random-examples-container">
+            <div className="example-section">
+                <h4>Example Stock Tickers:</h4>
+                <p>{randomStockTickers.join(', ')}</p>
+            </div>
+            <div className="example-section">
+                <h4>Example Crypto Symbols</h4>
+                <p>{randomCryptoSymbols.join(', ')}</p>
+            </div>
         </div>
     );
 }
