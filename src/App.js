@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Provider } from 'react-redux';
 import store from './redux/store';
@@ -21,7 +20,7 @@ function App() {
                 </div>
 
                 <p></p>
-                <h1><RandomExamples /></h1>
+                <RandomExamples />
                 <p></p>
 
                 <div className='container'>
