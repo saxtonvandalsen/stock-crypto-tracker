@@ -201,3 +201,8 @@ button:hover {
   text-decoration: none;
   display: inline-block;
 }
+
+.error-message {
+  color: red;
+  margin-bottom: 10px;
+}
