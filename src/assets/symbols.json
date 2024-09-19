@@ -2,5 +2,7 @@
     "stockTickers": ["AAPL", "AMZN", "MSFT", "NVDA", "DIS", "KO",
      "UBER", "VTI", "LULU", "AVGO", "AMD", "VGT", "TGT", "META", 
      "QQQ", "VZIO", "JPM", "V", "NFLX", "TSLA", "BAC"],
-     "cryptoSymbols": ["BTCUSD", "DOGEUSD", "USDC", "XLM", "ETHUSD"]
+     "cryptoSymbols": ["BTCUSD", "DOGEUSD", "USDC", "DAIUSD", 
+     "DASHUSD", "ATOMUSD", "DOTUSD", "ETHUSD", "ETCUSD", "LTCUSD",
+    "LINKUSD"]
 }
