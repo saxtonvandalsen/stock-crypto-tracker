@@ -4,6 +4,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux'; // Hook to access data from Redux store (global state)
 import { saveFavoriteItem } from '../firebase/firestoreService';
+import { getAuth } from 'firebase/auth';
 
 // Displays crypto data fetched from application state. Data is retrieved using Redux useSelector
 // hook and rendered in JSX. If no data is available, componenet returns null
@@ -17,8 +18,17 @@ function CryptoData() {
     const crypto = cryptoData[0];
 
     const handleSaveFavorite = async () => {
+        const auth = getAuth();
+        const user = auth.currentUser; // get currently signed-in user
+
         if (user) {
-          await saveFavoriteItem(user.uid, cryptoData);
+          try {
+            await saveFavoriteItem(user.uid, cryptoData); // pass crypto coin and user id
+            alert('Crypto saved to favorites!');
+          } catch (error) {
+            console.error('Error saving favorite:', error);
+            alert('Failed to save favorite. Please try again.');
+          }
         } else {
           alert('Please sign in to save your favorites.');
         }

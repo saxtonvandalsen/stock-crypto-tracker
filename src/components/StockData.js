@@ -4,7 +4,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { saveFavoriteItem } from '../firebase/firestoreService';
-import CryptoData from './CryptoData';
+import { getAuth } from 'firebase/auth';
 
 function StockData() {
     // Hold data returned by API. It's retrieved by global state
@@ -16,8 +16,17 @@ function StockData() {
     const stock = stockData[0];
 
     const handleSaveFavorite = async () => {
+      const auth = getAuth();
+      const user = auth.currentUser; // Get the currently signed-in user
+
         if (user) {
-          await saveFavoriteItem(user.uid, stockData);
+          try {
+            await saveFavoriteItem(user.uid, stockData);
+            alert('Stock saved to favorites!');
+          } catch (error) {
+            console.error('Error saving favorite:', error);
+            alert('Failed to save favorite. Please try again.');
+          }
         } else {
           alert('Please sign in to save your favorites.');
         }
