@@ -3,6 +3,8 @@
 
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { saveFavoriteItem } from '../firebase/firestoreService';
+import CryptoData from './CryptoData';
 
 function StockData() {
     // Hold data returned by API. It's retrieved by global state
@@ -12,6 +14,14 @@ function StockData() {
 
     // Accessing array
     const stock = stockData[0];
+
+    const handleSaveFavorite = async () => {
+        if (user) {
+          await saveFavoriteItem(user.uid, stockData);
+        } else {
+          alert('Please sign in to save your favorites.');
+        }
+    };
 
     // Rendering stock data. stockData info to be displayed
     // if not null
@@ -24,6 +34,8 @@ function StockData() {
             <p>Market Cap: {stock.mktCap}</p>
             <p>Average Volume: {stock.volAvg}</p>
             <p>Yearly Range: {stock.range}</p>
+
+            <button onClick={handleSaveFavorite}>Save to Favorites</button>
         </div>
     );
 }
