@@ -206,3 +206,61 @@ button:hover {
   color: red;
   margin-bottom: 10px;
 }
+
+.favorites-container {
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+}
+
+.favorites-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.favorites-container li {
+  margin: 10px 0;
+}
+
+.favorites-container button {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.favorites-container button:hover {
+  background-color: #e0e0e0;
+}
+
+.data-sections {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 40px;
+}
+
+.favorites-sections {
+  display: flex;
+  justify-content: space-around;
+}
+
+.crypto-section, .stock-section, .crypto-favorites, .stock-favorites {
+  width: 45%;
+  padding: 20px;
+  border: 1px solid #ddd;
+}
+
+.crypto-favorites ul, .stock-favorites ul {
+  list-style-type: none;
+}
+
+.crypto-favorites li, .stock-favorites li {
+  margin: 10px 0;
+}
+
+button {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  padding: 5px 10px;
+  cursor: pointer;
+}
