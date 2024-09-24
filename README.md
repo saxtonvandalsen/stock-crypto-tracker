@@ -1,7 +1,7 @@
 # Stock & Crypto Tracker Dashboard
 
 ## Overview
-The Stock & Crypto Tracker Dashboard is a web application that allows users to track real-time stock and cryptocurrency data and save their favorite investments by utilizing user authentication. This project was designed to help investors retrieve real time stock & crypto coins prices and specific data.
+The Stock & Crypto Tracker Dashboard is a full-stack end-to-end web application that allows users to track real-time stock and cryptocurrency data and save their favorite investments by utilizing user authentication. This project was designed to help investors retrieve real time stock & crypto coins prices and specific data.
 
 This app enables users to:
 * Search for stock and cryptocurrency prices using API data.
@@ -22,6 +22,9 @@ By building this project, I aimed to challenge myself in learning new technologi
 * **Responsive UI:** Built with Bootstrap and CSS FlexBox for a clean and responsive layout, optimized for different screen sizes.
 * **React/Redux State Management:** Redux helps handle the application's complex state with efficiency, from fetching API data to managing user favorites.
 
+## Deployment on Netlify
+Deployed this on Netlify, utilizing its continous integration and deployment capabilities. The deployment is configured to automatically trigger builds from the main branch of the GitHub repository, ensuring all code changes are reflected in the live environment. The build process is handled through Netlify's automated pipelines, with the React application built using **npm run build**. Environment variables, including API keys and Firebase credentials, are securly managed through Netlify's settings. Leveraging Netlify's global CDN for fast and reliable performance, along with automatic SSL management to provide secure HTTPS access.
+
 ## Tools and Technologies
 * **React:** JavaScript library I used to build the front-end user interface.
 * **Redux:** Centralized state management for handling asynchronous API calls, user authentication, and favorites.
@@ -31,6 +34,7 @@ By building this project, I aimed to challenge myself in learning new technologi
 * **REST APIs:** Fetched real-time stock and crypto data from publi APIs. (Financial Modeling Prep API)
 * **Bootstrap:** Created responsive layout and components.
 * **CSS FlexBox:** Structured the layout, particularly in segmenting the stock and crypto sections on the dashboard.
+* **Netlify:** Deployed this web application in a CI/CD deployment environment.
 
 ## Challenges Overcome
 1. **State Management with Redux:** Integrating Redux to manage asynchronous API data, authentication states, and user favorites was essential but tricky to implement and my first time working with it. After resolving several bugs related to state persistence, I created a smooth user experience where data flows naturally through the application.
