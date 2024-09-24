@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchFavorites } from '../firebase/firestoreService';
 import { getAuth } from 'firebase/auth';
 import { fetchCryptoData } from '../redux/actions';
@@ -7,7 +7,7 @@ import { fetchCryptoData } from '../redux/actions';
 const CryptoFavorites = () => {
     const dispatch = useDispatch();
     const [favorites, setFavorites] = useState([]);
-    
+
     const auth = getAuth();
     const user = auth.currentUser;
 
@@ -16,7 +16,9 @@ const CryptoFavorites = () => {
         const fetchUserFavorites = async () => {
             if (user) {
                 const userFavorites = await fetchFavorites(user.uid);
-                setFavorites(userFavorites);
+                // Filter to include only cryptos based on a property like symbol format or a tag
+                const cryptoFavorites = userFavorites.filter(fav => fav.item[0].type === 'crypto'); 
+                setFavorites(cryptoFavorites);
             }
         };
         fetchUserFavorites();

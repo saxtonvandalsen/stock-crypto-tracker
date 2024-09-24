@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchFavorites } from '../firebase/firestoreService';
 import { getAuth } from 'firebase/auth';
-import { fetchStockData } from '../redux/actions'; // Adjust according to your action
+import { fetchStockData } from '../redux/actions';
 
 const StockFavorites = () => {
     const dispatch = useDispatch();
@@ -16,7 +16,9 @@ const StockFavorites = () => {
         const fetchUserFavorites = async () => {
             if (user) {
                 const userFavorites = await fetchFavorites(user.uid);
-                setFavorites(userFavorites);
+                // Filter to include only stocks based on a property like symbol format or a tag
+                const stockFavorites = userFavorites.filter(fav => fav.item[0].type === 'stock');
+                setFavorites(stockFavorites);
             }
         };
         fetchUserFavorites();
@@ -33,7 +35,7 @@ const StockFavorites = () => {
                 <ul>
                     {favorites.map((favorite, index) => (
                         <li key={index} onClick={() => handleFetchFavorite(favorite.item[0].symbol)}>
-                            {favorite.item[0].name} ({favorite.item[0].symbol})
+                            {favorite.item[0].companyName} ({favorite.item[0].symbol})
                         </li>
                     ))}
                 </ul>
