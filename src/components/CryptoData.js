@@ -8,7 +8,6 @@ function CryptoData() {
     const dispatch = useDispatch();
     const cryptoData = useSelector(state => state.cryptoData);
     const [favorites, setFavorites] = useState([]);
-    const [selectedCrypto, setSelectedCrypto] = useState(null);
 
     const auth = getAuth();
     const user = auth.currentUser;
@@ -18,7 +17,9 @@ function CryptoData() {
         const fetchUserFavorites = async () => {
             if (user) {
                 const userFavorites = await fetchFavorites(user.uid);
-                setFavorites(userFavorites);
+                // Filter to only show crypto items
+                const cryptoFavorites = userFavorites.filter(fav => fav.type === 'crypto');
+                setFavorites(cryptoFavorites);
             }
         };
 
@@ -27,16 +28,18 @@ function CryptoData() {
 
     if (!cryptoData || cryptoData.length === 0) return null;
 
-    const crypto = cryptoData[0]; // Accessing array
+    const crypto = cryptoData[0]; // Accessing the first item in the array
 
     const handleSaveFavorite = async () => {
         if (user) {
             try {
-                await saveFavoriteItem(user.uid, cryptoData);
+                // Save crypto data with the type specified as 'crypto'
+                await saveFavoriteItem(user.uid, cryptoData, 'crypto');
                 alert('Crypto saved to favorites!');
                 // Refetch favorites after saving
                 const updatedFavorites = await fetchFavorites(user.uid);
-                setFavorites(updatedFavorites);
+                const cryptoFavorites = updatedFavorites.filter(fav => fav.type === 'crypto');
+                setFavorites(cryptoFavorites);
             } catch (error) {
                 console.error('Error saving favorite:', error);
                 alert('Failed to save favorite. Please try again.');

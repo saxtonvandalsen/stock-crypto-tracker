@@ -8,7 +8,7 @@ function StockData() {
     const dispatch = useDispatch();
     const stockData = useSelector(state => state.stockData);
     const [favorites, setFavorites] = useState([]);
-    
+
     const auth = getAuth();
     const user = auth.currentUser;
 
@@ -17,7 +17,9 @@ function StockData() {
         const fetchUserFavorites = async () => {
             if (user) {
                 const userFavorites = await fetchFavorites(user.uid);
-                setFavorites(userFavorites);
+                // Filter to include only stocks based on a property like symbol format or a tag
+                const stockFavorites = userFavorites.filter(fav => fav.type === 'stock');
+                setFavorites(stockFavorites);
             }
         };
 
@@ -26,16 +28,17 @@ function StockData() {
 
     if (!stockData || stockData.length === 0) return null;
 
-    const stock = stockData[0]; // Accessing array
+    const stock = stockData[0]; // Accessing the first stock in the array
 
     const handleSaveFavorite = async () => {
         if (user) {
             try {
-                await saveFavoriteItem(user.uid, stockData);
+                await saveFavoriteItem(user.uid, stockData, 'stock');
                 alert('Stock saved to favorites!');
-                // Refetch favorites after saving
+                // Fetch and set updated favorites
                 const updatedFavorites = await fetchFavorites(user.uid);
-                setFavorites(updatedFavorites);
+                const stockFavorites = updatedFavorites.filter(fav => fav.type === 'stock');
+                setFavorites(stockFavorites);
             } catch (error) {
                 console.error('Error saving favorite:', error);
                 alert('Failed to save favorite. Please try again.');
@@ -62,7 +65,7 @@ function StockData() {
                     <h3>Your Favorite Stocks</h3>
                     <ul>
                         {favorites.map((favorite, index) => (
-                            <li key={index} onClick={() => handleFetchFavorite(favorite.item[0].ticker)}>
+                            <li key={index} onClick={() => handleFetchFavorite(favorite.item[0].symbol)}>
                                 {favorite.item[0].companyName} ({favorite.item[0].symbol})
                             </li>
                         ))}
