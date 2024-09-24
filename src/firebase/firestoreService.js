@@ -1,10 +1,9 @@
-// Import the db instance from firebaseConfig instead of calling getFirestore() directly
 import { doc, setDoc, getDoc } from "firebase/firestore";
-import { db } from "../firebaseConfig";  // Import the initialized Firestore instance
+import { db } from "../firebaseConfig"; // Import the initialized Firestore instance
 
-export const saveFavoriteItem = async (uid, cryptoData) => {
+export const saveFavoriteItem = async (uid, itemData, type) => {
     try {
-        const docRef = doc(db, "favorites", uid);  // Reference to user-specific favorites
+        const docRef = doc(db, "favorites", uid); // Reference to user-specific favorites
         const docSnap = await getDoc(docRef);
 
         let favorites = [];
@@ -14,14 +13,16 @@ export const saveFavoriteItem = async (uid, cryptoData) => {
         }
 
         // Check if the favorite already exists to avoid duplicates
-        const existing = favorites.find(fav => fav.item[0].symbol === cryptoData[0].symbol);
+        const existing = favorites.find(
+            (fav) => fav.item[0].symbol === itemData[0].symbol && fav.type === type
+        );
 
         if (!existing) {
-            favorites.push({ item: cryptoData });
+            favorites.push({ item: itemData, type }); // Add the type ('stock' or 'crypto')
             await setDoc(docRef, { items: favorites });
-            console.log("Crypto saved successfully:", favorites);
+            console.log(`${type} saved successfully:`, favorites);
         } else {
-            console.log("Crypto already exists in favorites.");
+            console.log(`${type} already exists in favorites.`);
         }
     } catch (error) {
         console.error("Error saving favorite item:", error);
