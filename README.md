@@ -38,3 +38,8 @@ By building this project, I aimed to challenge myself in learning new technologi
 3. **API Rate Limiting:** Managing API rate limits was another hurdle. Since the free-tier API has daily request limits, I implemented an alert system to notify users when they were approaching the API call limit.
 4. **Authentication Management:** One of the key challenges I ran into was securely implementing user authentication with Firebase. After setting up Firebase Authentication, I ensured only registered user could access saving to favorites, which required precise rule-based access control in Firestore.
 5. **Responsive UI Design:** Designing a clean and user-friendly interface with Bootstrap and Flexbox involved some trial and error, especially in ensuring that the stock and crypto sections were well segmented and responsive on all devices.
+
+## Future Features
+
+* **Historical Data Visualization:** Considering implementation of charting libraries to visualize price history for selected stocks and cryptocurrencies.
+* **Enhanced User Profile:** I'm aiming to build more features to the user profile, such as tracking portfolios and/or setting up price alerts for example.
