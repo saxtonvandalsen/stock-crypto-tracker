@@ -1,40 +1,51 @@
-// Component works with CryptoForm component so when a user submits a crypto coin symbol
-// in CryptoForm, data is fetched and stored in Redux. CryptoData then retrieves and displays
-
-import React from 'react';
-import { useSelector } from 'react-redux'; // Hook to access data from Redux store (global state)
-import { saveFavoriteItem } from '../firebase/firestoreService';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { saveFavoriteItem, fetchFavorites } from '../firebase/firestoreService';
 import { getAuth } from 'firebase/auth';
+import { fetchCryptoData } from '../redux/actions';
 
-// Displays crypto data fetched from application state. Data is retrieved using Redux useSelector
-// hook and rendered in JSX. If no data is available, componenet returns null
 function CryptoData() {
-    // Retrieve crypto data from Redux state
+    const dispatch = useDispatch();
     const cryptoData = useSelector(state => state.cryptoData);
+    const [favorites, setFavorites] = useState([]);
+    const [selectedCrypto, setSelectedCrypto] = useState(null);
+
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    // Fetch user's favorite crypto items on component mount
+    useEffect(() => {
+        const fetchUserFavorites = async () => {
+            if (user) {
+                const userFavorites = await fetchFavorites(user.uid);
+                setFavorites(userFavorites);
+            }
+        };
+
+        fetchUserFavorites();
+    }, [user]);
 
     if (!cryptoData || cryptoData.length === 0) return null;
 
-    // Accessing array
-    const crypto = cryptoData[0];
+    const crypto = cryptoData[0]; // Accessing array
 
     const handleSaveFavorite = async () => {
-        const auth = getAuth();
-        const user = auth.currentUser; // get currently signed-in user
-
         if (user) {
-          try {
-            await saveFavoriteItem(user.uid, cryptoData); // pass crypto coin and user id
-            alert('Crypto saved to favorites!');
-          } catch (error) {
-            console.error('Error saving favorite:', error);
-            alert('Failed to save favorite. Please try again.');
-          }
+            try {
+                await saveFavoriteItem(user.uid, cryptoData);
+                alert('Crypto saved to favorites!');
+                // Refetch favorites after saving
+                const updatedFavorites = await fetchFavorites(user.uid);
+                setFavorites(updatedFavorites);
+            } catch (error) {
+                console.error('Error saving favorite:', error);
+                alert('Failed to save favorite. Please try again.');
+            }
         } else {
-          alert('Please sign in to save your favorites.');
+            alert('Please sign in to save your favorites.');
         }
     };
 
-    // Render the crypto data inside a div
     return (
         <div>
             <h2>Crypto Data</h2>
@@ -46,6 +57,19 @@ function CryptoData() {
             <p>Year High Price: {crypto.yearHigh}</p>
 
             <button onClick={handleSaveFavorite}>Save to Favorites</button>
+
+            {favorites.length > 0 && (
+                <div>
+                    <h3>Your Favorite Cryptos</h3>
+                    <ul>
+                        {favorites.map((favorite, index) => (
+                            <li key={index} onClick={() => handleFetchFavorite(favorite.item[0].symbol)}>
+                                {favorite.item[0].name} ({favorite.item[0].symbol})
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
         </div>
     );
 }
