@@ -44,8 +44,6 @@ function StockForm() {
 
         // If valid, dispatch action to fetch stock data via Redux action
         dispatch(fetchStockData(ticker));
-        //setMessageType('success');
-        //setMessage(`Fetching data for ticker: ${ticker}`);
         
         // Clear input field after submission
         setTicker('');
@@ -64,18 +62,10 @@ function StockForm() {
                 />
                 <button type="submit">Fetch Stock Data</button>
             </form>
-
-            {/* Test message 
-            {message && (
-                <p style={{ color: messageType === 'error' ? 'red' : 'green'}}>
-                    {message}
-                </p> 
-            )} */}
             {messageType === 'error' && <p style={{ color: 'red' }}>{message}</p>}
             {messageType === 'success' && <p style={{ color: 'green' }}>{message}</p>}
         </div>
     );
 }
 
-// Available for import and use in other files
 export default StockForm;
