@@ -4,5 +4,5 @@
      "QQQ", "VZIO", "JPM", "V", "NFLX", "TSLA", "BAC"],
      "cryptoSymbols": ["BTCUSD", "DOGEUSD", "USDC", "DAIUSD", 
      "DASHUSD", "ATOMUSD", "DOTUSD", "ETHUSD", "ETCUSD", "LTCUSD",
-    "LINKUSD"]
+    "LINKUSD", "SHIBUSD", "AVAXUSD", "UNIUSD"]
 }
