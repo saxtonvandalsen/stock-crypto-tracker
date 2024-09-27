@@ -11,7 +11,6 @@ const CryptoFavorites = () => {
     const auth = getAuth();
     const user = auth.currentUser;
 
-    // Fetch user's favorite crypto items
     useEffect(() => {
         const fetchUserFavorites = async () => {
             if (user) {

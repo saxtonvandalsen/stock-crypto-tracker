@@ -11,7 +11,6 @@ const StockFavorites = () => {
     const auth = getAuth();
     const user = auth.currentUser;
 
-    // Fetch user's favorite stock items
     useEffect(() => {
         const fetchUserFavorites = async () => {
             if (user) {
