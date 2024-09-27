@@ -12,12 +12,10 @@ function CryptoData() {
     const auth = getAuth();
     const user = auth.currentUser;
 
-    // Fetch user's favorite crypto items on component mount
     useEffect(() => {
         const fetchUserFavorites = async () => {
             if (user) {
                 const userFavorites = await fetchFavorites(user.uid);
-                // Filter to only show crypto items
                 const cryptoFavorites = userFavorites.filter(fav => fav.type === 'crypto');
                 setFavorites(cryptoFavorites);
             }
@@ -28,15 +26,14 @@ function CryptoData() {
 
     if (!cryptoData || cryptoData.length === 0) return null;
 
-    const crypto = cryptoData[0]; // Accessing the first item in the array
+    const crypto = cryptoData[0];
 
     const handleSaveFavorite = async () => {
         if (user) {
             try {
-                // Save crypto data with the type specified as 'crypto'
                 await saveFavoriteItem(user.uid, cryptoData, 'crypto');
                 alert('Crypto saved to favorites!');
-                // Refetch favorites after saving
+                
                 const updatedFavorites = await fetchFavorites(user.uid);
                 const cryptoFavorites = updatedFavorites.filter(fav => fav.type === 'crypto');
                 setFavorites(cryptoFavorites);

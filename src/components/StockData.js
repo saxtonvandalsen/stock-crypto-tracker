@@ -12,7 +12,6 @@ function StockData() {
     const auth = getAuth();
     const user = auth.currentUser;
 
-    // Fetch user's favorite stock items on component mount
     useEffect(() => {
         const fetchUserFavorites = async () => {
             if (user) {
@@ -28,7 +27,7 @@ function StockData() {
 
     if (!stockData || stockData.length === 0) return null;
 
-    const stock = stockData[0]; // Accessing the first stock in the array
+    const stock = stockData[0];
 
     const handleSaveFavorite = async () => {
         if (user) {
