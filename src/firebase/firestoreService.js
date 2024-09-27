@@ -1,5 +1,5 @@
 import { doc, setDoc, getDoc } from "firebase/firestore";
-import { db } from "../firebaseConfig"; // Import the initialized Firestore instance
+import { db } from "../firebaseConfig";
 
 export const saveFavoriteItem = async (uid, itemData, type) => {
     try {
