@@ -11,10 +11,9 @@ const SignInSignUp = () => {
   const navigate = useNavigate();
 
   const handleSignUp = () => {
-    // Clear any previous errors
+    // clear any previous errors
     setError('');
 
-    // Basic validation for email and password
     if (!email || !password) {
       setError('Please enter an email and password.');
       return;
@@ -27,15 +26,14 @@ const SignInSignUp = () => {
       })
       .catch((error) => {
         console.error("Sign-up error:", error.message);
-        handleAuthErrors(error.code); // Pass the error code to our function to set an appropriate message
+        handleAuthErrors(error.code); 
       });
   };
 
   const handleSignIn = () => {
-    // Clear any previous errors
+    
     setError('');
 
-    // Basic validation for email and password
     if (!email || !password) {
       setError('Please enter an email and password.');
       return;
@@ -48,12 +46,11 @@ const SignInSignUp = () => {
       })
       .catch((error) => {
         console.error("Sign-in error:", error.message);
-        handleAuthErrors(error.code); // Pass the error code to our function to set an appropriate message
+        handleAuthErrors(error.code); 
       });
   };
 
   const handleAuthErrors = (errorCode) => {
-    // Handle different error codes from Firebase
     switch (errorCode) {
       case 'auth/email-already-in-use':
         setError('This email is already registered.');
@@ -79,7 +76,7 @@ const SignInSignUp = () => {
     <div className="auth-container">
       <h2>{isSignUp ? "Sign Up" : "Sign In"}</h2>
       
-      {error && <div className="error-message">{error}</div>}  {/* Display any error messages */}
+      {error && <div className="error-message">{error}</div>}
 
       <input
         type="email"
