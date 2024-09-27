@@ -1,8 +1,6 @@
-// src/auth/AuthService.js
 import { auth } from '../firebaseConfig';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
-// Register User
 export const signUp = async (email, password) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -12,7 +10,6 @@ export const signUp = async (email, password) => {
   }
 };
 
-// Login User
 export const logIn = async (email, password) => {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -22,7 +19,6 @@ export const logIn = async (email, password) => {
   }
 };
 
-// Logout User
 export const logOut = async () => {
   try {
     await signOut(auth);
