@@ -9,7 +9,7 @@ export const fetchStockData = (ticker) => async (dispatch) => {
         const data = await response.json();
 
         if (data.length === 0) {
-            throw new Error('Invalid ticker or no data available.');
+            throw new Error('Invalid ticker and/or no data available.');
         }
 
         dispatch({ type: FETCH_STOCK_DATA, payload: data });
@@ -25,7 +25,7 @@ export const fetchCryptoData = (symbol) => async (dispatch) => {
         const data = await response.json();
 
         if (data.length === 0) {
-            throw new Error('Invalid ticker or no data available.');
+            throw new Error('Invalid ticker and/or no data available.');
         }
 
         dispatch({ type: FETCH_CRYPTO_DATA, payload: data });
