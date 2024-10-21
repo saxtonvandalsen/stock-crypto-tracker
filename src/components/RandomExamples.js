@@ -18,7 +18,7 @@ const RandomExamples = () => {
                 <p>{randomStockTickers.join(', ')}</p>
             </div>
             <div className="example-section">
-                <h4>Example Crypto Symbols</h4>
+                <h4>Example Crypto Symbols:</h4>
                 <p>{randomCryptoSymbols.join(', ')}</p>
             </div>
         </div>
